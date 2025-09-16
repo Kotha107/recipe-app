@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Api } from 'src/app/services/api-sevice/api';
+import { Api } from 'src/app/services/api-sevice/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from 'src/app/models/recipe';
 import { IonicModule } from "@ionic/angular";

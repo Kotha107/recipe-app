@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Api } from '../services/api-sevice/api';
+import { Api } from '../services/api-sevice/api.service';
 import { Recipe } from '../models/recipe';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
