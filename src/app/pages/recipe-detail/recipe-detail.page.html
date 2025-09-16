@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{ recipe?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="recipe" class="ion-padding">
+  <ion-grid fixed="true">
+    <ion-row class="ion-align-items-start">
+
+      <ion-col size="12" size-md="7">
+        <h1 style="font-size: 2.5em; font-weight: bold; line-height: 1.2;">
+          {{ recipe.name }}
+        </h1>
+        <ion-card-subtitle style="font-size: 1em; color: #888;">
+          {{ recipe.cuisine }} Cuisine
+        </ion-card-subtitle>
+        <div style="margin: 20px 0; color: #555;">
+          <p><strong>MAKES:</strong> {{ recipe.servings }} SERVINGS</p>
+          <p><strong>Prep Time:</strong> {{ recipe.prepTimeMinutes }} minutes</p>
+          <p><strong>Cook Time:</strong> {{ recipe.cookTimeMinutes }} minutes</p>
+        </div>
+
+        
+          <ion-list-header>
+            <h2 style="font-weight: bold;">Ingredients</h2>
+          </ion-list-header>
+          <ul>
+            <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+          </ul>
+        
+
+          <ion-list-header>
+            <h2 style="font-weight: bold;">Instructions</h2>
+          </ion-list-header>
+          <ul>
+            <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>
+          </ul>
+
+      </ion-col>
+
+      <ion-col size="12" size-md="5">
+        <img [src]="recipe.image" alt="{{ recipe.name }}" style="border-radius: 10px;" />
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>
