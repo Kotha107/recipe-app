@@ -2,7 +2,11 @@
 module.exports = {
   content: ['./src/**/*.{html,ts}'],
   theme: {
-    extend: {},
+    extend: {
+       fontFamily: {
+         sans: ['Montserrat', 'sans-serif', 'Helvetica Neue', 'Helvetica', 'arial'],
+    titleFont: ['Macondo', 'cursive'],    },
+    },
   },
   plugins: [require('@tailwindcss/aspect-ratio')
 ,require('@tailwindcss/typography')
