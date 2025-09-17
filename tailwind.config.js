@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
        fontFamily: {
-         sans: ['Montserrat', 'sans-serif', 'Helvetica Neue', 'Helvetica', 'arial'],
-    titleFont: ['Macondo', 'cursive'],    },
+         serif: ['DM Serif Display', 'serif'],
+         titleFont: ['Macondo', 'cursive'],
+       },
     },
   },
   plugins: [require('@tailwindcss/aspect-ratio')
