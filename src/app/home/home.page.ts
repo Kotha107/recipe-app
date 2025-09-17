@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Api } from '../services/api-sevice/api.service';
-import { IonicModule, ModalController } from '@ionic/angular';
-import { async } from 'rxjs';
+import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { getStarArray } from '../utils/rating.utils';
@@ -16,16 +15,15 @@ import { RecipeModel } from '../models/recipe.model';
 export class HomePage implements OnInit {
   private currentPage = 1;
   public recipes: RecipeModel[] = [];
-  public isLoading = false;
-  public error: string | null = null;
-  public skeletonArray = Array(10);
+
   public getStarArray = getStarArray;
   constructor(private apiService: Api) {}
 
   ngOnInit() {
     this.apiService.getAllRecipes().subscribe((data) => {
       console.log('API Response Received :', data);
-      this.recipes = data.Recipes;
+      this.recipes = data.recipes;
+      console.log('Recipes Loaded:', this.recipes);
     });
   }
 }

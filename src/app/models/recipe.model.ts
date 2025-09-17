@@ -1,4 +1,3 @@
-
 export interface RecipeModel {
   id: number;
   name: string;
@@ -16,7 +15,7 @@ export interface RecipeModel {
 }
 
 export interface RecipeModelApiResponse {
-  Recipes: RecipeModel[];
+  recipes: RecipeModel[];
   total: number;
   skip: number;
   limit: number;
