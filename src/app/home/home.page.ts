@@ -13,17 +13,32 @@ import { RecipeModel } from '../models/recipe.model';
   imports: [IonicModule, RouterModule],
 })
 export class HomePage implements OnInit {
-  private currentPage = 1;
   public recipes: RecipeModel[] = [];
-
   public getStarArray = getStarArray;
+
+  private limit = 10;
+  private skip = 0;
+  private totalRecipes = 0;
+
   constructor(private apiService: Api) {}
 
   ngOnInit() {
-    this.apiService.getAllRecipes().subscribe((data) => {
-      console.log('API Response Received :', data);
-      this.recipes = data.recipes;
-      console.log('Recipes Loaded:', this.recipes);
+    this.loadRecipes();
+  }
+
+  loadRecipes(event?: any) {
+    this.apiService.getRecipes(this.limit, this.skip).subscribe((data) => {
+      this.recipes.push(...data.recipes);
+      this.totalRecipes = data.total;
+      this.skip += this.limit;
+
+      if (event) {
+        event.target.complete();
+      }
+
+      if (event && this.recipes.length >= this.totalRecipes) {
+        event.target.disabled = true;
+      }
     });
   }
 }

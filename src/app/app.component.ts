@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { star, timeOutline ,starHalfOutline,starOutline,shareSocialOutline} from 'ionicons/icons';
+import {
+  star,
+  timeOutline,
+  starHalfOutline,
+  starOutline,
+  shareSocialOutline,
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +15,13 @@ import { star, timeOutline ,starHalfOutline,starOutline,shareSocialOutline} from
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
-  constructor() {addIcons({star, timeOutline,starHalfOutline, starOutline,shareSocialOutline});
-   }
+  constructor() {
+    addIcons({
+      star,
+      timeOutline,
+      starHalfOutline,
+      starOutline,
+      shareSocialOutline,
+    });
+  }
 }

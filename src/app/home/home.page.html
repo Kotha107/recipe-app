@@ -65,4 +65,13 @@
       }
     </div>
   </div>
+  <div>
+    <ion-infinite-scroll (ionInfinite)="loadRecipes($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more recipes..."
+      >
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
 </ion-content>

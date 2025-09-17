@@ -10,8 +10,11 @@ export class Api {
   private API_URL = 'https://dummyjson.com/recipes';
   constructor(private http: HttpClient) {}
 
-  getAllRecipes(): Observable<RecipeModelApiResponse> {
-    return this.http.get<RecipeModelApiResponse>(this.API_URL);
+  getRecipes(limit: number, skip: number): Observable<RecipeModelApiResponse> {
+    const params = new HttpParams()
+      .set('limit', limit.toString())
+      .set('skip', skip.toString());
+    return this.http.get<RecipeModelApiResponse>(this.API_URL, { params });
   }
 
   getRecipeById(id: string): Observable<RecipeModel> {
