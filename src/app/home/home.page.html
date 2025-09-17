@@ -1,52 +1,67 @@
 <ion-header>
- <ion-toolbar color="dark">
-  <ion-title class="w-full text-center text-3xl font-titleFont">Recipe List</ion-title>
-</ion-toolbar>
+  <ion-toolbar color="dark">
+    <ion-title class="w-full text-center text-3xl font-titleFont"
+      >Recipe List</ion-title
+    >
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="bg-gray-100 p-4 sm:p-6">
   <div class="max-w-3xl mx-auto mt-10">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
-      
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6"
+    >
       @for (item of recipes; track item.id) {
-        
-       <a [routerLink]="['/recipe-detail', item.id]" class="block group">
-  <div class="bg-white shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
-    <img [src]="item.image" alt="{{ item.name }}" class="w-full h-48 object-cover" />
-    
-    <div class="p-4 flex flex-col flex-grow">
-    <h3 class="text-lg hover:text-[#892074] font-bold uppercase tracking-wider text-black">
-  {{ item.name }}
-</h3>
-<p class="text-xs mt-1 font-semibold text-[#892074] no-underline cursor-pointer hover:underline">
-  {{ item.cuisine }} Cuisine
-</p>
 
-      <div class="flex-grow"></div>
+      <a [routerLink]="['/recipe-detail', item.id]" class="block group">
+        <div
+          class="bg-white shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
+        >
+          <img
+            [src]="item.image"
+            alt="{{ item.name }}"
+            class="w-full h-48 object-cover"
+          />
 
-      <div class="flex  block group-hover:hidden justify-between items-center pt-3 mt-4 border-t border-gray-200">
-       
-        <div class="flex items-center text-sm text-gray-600">
-          @for (starIcon of getStarArray(item.rating); track $index) {
-            <ion-icon [name]="starIcon" class="text-yellow-500"></ion-icon>
-          }
-          <span>{{ item.rating }} ({{ item.reviewCount }})</span>
-                </div>
+          <div class="p-4 flex flex-col flex-grow">
+            <h3
+              class="text-lg hover:text-[#892074] font-bold uppercase tracking-wider text-black"
+            >
+              {{ item.name }}
+            </h3>
+            <p
+              class="text-xs mt-1 font-semibold text-[#892074] no-underline cursor-pointer hover:underline"
+            >
+              {{ item.cuisine }} Cuisine
+            </p>
 
-        <div class="flex items-center text-sm text-gray-600">
-          <ion-icon name="time-outline" class="mr-1"></ion-icon>
-          <span>{{ item.cookTimeMinutes }} min</span>
+            <div class="flex-grow"></div>
+
+            <div
+              class="flex block group-hover:hidden justify-between items-center pt-3 mt-4 border-t border-gray-200"
+            >
+              <div class="flex items-center text-sm text-gray-600">
+                @for (starIcon of getStarArray(item.rating); track $index) {
+                <ion-icon [name]="starIcon" class="text-yellow-500"></ion-icon>
+                }
+                <span>{{ item.rating }} ({{ item.reviewCount }})</span>
+              </div>
+
+              <div class="flex items-center text-sm text-gray-600">
+                <ion-icon name="time-outline" class="mr-1"></ion-icon>
+                <span>{{ item.cookTimeMinutes }} min</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="hidden group-hover:flex items-center justify-center bg-[#77E2E1] text-b font-bold py-2"
+          >
+            <ion-icon name="share-social-outline" class="mr-2"></ion-icon>
+            <span>SHARE</span>
+          </div>
+          <div class="h-1 bg-[#77E2E1]"></div>
         </div>
-        
-      </div>
-    </div>
-        <div class="hidden group-hover:flex items-center justify-center bg-[#77E2E1] text-b font-bold py-2 ">
-          <ion-icon name="share-social-outline" class="mr-2"></ion-icon>
-          <span>SHARE</span>
-        </div>
-     <div class="h-1 bg-[#77E2E1]"></div>
-  </div>
-</a>
+      </a>
       }
     </div>
   </div>

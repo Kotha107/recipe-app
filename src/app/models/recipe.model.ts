@@ -1,5 +1,5 @@
 
-export interface Recipe {
+export interface RecipeModel {
   id: number;
   name: string;
   ingredients: string[];
@@ -15,8 +15,8 @@ export interface Recipe {
   reviewCount: number;
 }
 
-export interface RecipeApiResponse {
-  recipes: Recipe[];
+export interface RecipeModelApiResponse {
+  Recipes: RecipeModel[];
   total: number;
   skip: number;
   limit: number;

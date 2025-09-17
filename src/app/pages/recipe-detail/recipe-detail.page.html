@@ -6,7 +6,7 @@
         {{ recipe.name }}
       </h1>
       <div class="flex items-center text-gray-600">
-        @for (starIcon of getStarArray(recipe.rating); track $index) {
+        @for (starIcon of getStarArray(recipe.rating ); track $index) {
           <ion-icon [name]="starIcon" class="text-yellow-500 text-xl"></ion-icon>
         }
         <span class="ml-2 text-base">({{ recipe.reviewCount }} reviews)</span>

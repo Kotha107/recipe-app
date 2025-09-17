@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Api } from 'src/app/services/api-sevice/api.service';
 import { ActivatedRoute } from '@angular/router';
-import { Recipe } from 'src/app/models/recipe';
+import { RecipeModel } from 'src/app/models/recipe.model';
 import { IonicModule } from "@ionic/angular";
-import { addIcons } from 'ionicons';
-import { star,timeOutline ,starHalfOutline,starOutline,shareSocialOutline, restaurantOutline, flameOutline} from 'ionicons/icons';
+import { getStarArray } from 'src/app/utils/rating.utils';
+
 
 
 @Component({
@@ -16,11 +16,10 @@ import { star,timeOutline ,starHalfOutline,starOutline,shareSocialOutline, resta
   standalone: true,
   imports: [CommonModule, FormsModule, IonicModule],})
 export class RecipeDetailPage implements OnInit {
-  recipe:Recipe | null = null;
+  public getStarArray = getStarArray;
+  recipe: RecipeModel | null = null;
 
-  constructor(private route: ActivatedRoute, private apiService: Api) { 
-    addIcons({star, flameOutline,timeOutline,starHalfOutline, starOutline,shareSocialOutline,restaurantOutline});
-  }
+  constructor(private route: ActivatedRoute, private apiService: Api) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -31,20 +30,6 @@ export class RecipeDetailPage implements OnInit {
       });
     }
   }
-  getStarArray(rating: number): string[] {
-  const stars = [];
- const roundedRating = Math.round(rating * 2) / 2;
-
-  for (let i = 1; i <= 5; i++) {
-    if (i <= roundedRating) {
-      stars.push('star'); // Full star
-    } else if (i - 0.5 === roundedRating) {
-      stars.push('star-half-outline'); // Half star
-    } else {
-      stars.push('star-outline'); // Empty star
-    }
-  }
-  return stars;
-}
+ 
 
 }
