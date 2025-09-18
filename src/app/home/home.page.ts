@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Api } from '../services/api-sevice/api.service';
+import { Component, inject, OnInit } from '@angular/core';
+import { Api } from '../services/api-service/api.service';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { getStarArray } from '../utils/rating.utils';
 import { RecipeModel } from '../models/recipe.model';
-
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -13,20 +13,21 @@ import { RecipeModel } from '../models/recipe.model';
   imports: [IonicModule, RouterModule],
 })
 export class HomePage implements OnInit {
+  private apiService = inject(Api);
   public recipes: RecipeModel[] = [];
-  public getStarArray = getStarArray;
+
 
   private limit = 10;
   private skip = 0;
   private totalRecipes = 0;
 
-  constructor(private apiService: Api) {}
+  constructor() {}
 
   ngOnInit() {
     this.loadRecipes();
   }
 
-  loadRecipes(event?: any) {
+  loadRecipes(event?: InfiniteScrollCustomEvent) {
     this.apiService.getRecipes(this.limit, this.skip).subscribe((data) => {
       this.recipes.push(...data.recipes);
       this.totalRecipes = data.total;
@@ -41,4 +42,10 @@ export class HomePage implements OnInit {
       }
     });
   }
+   getStarArray(rating:number){
+    return getStarArray(rating);
+  }
+
 }
+
+

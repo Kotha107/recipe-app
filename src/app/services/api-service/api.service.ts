@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RecipeModel, RecipeModelApiResponse } from '../../models/recipe.model';
 
@@ -8,7 +8,8 @@ import { RecipeModel, RecipeModelApiResponse } from '../../models/recipe.model';
 })
 export class Api {
   private API_URL = 'https://dummyjson.com/recipes';
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+  constructor() {}
 
   getRecipes(limit: number, skip: number): Observable<RecipeModelApiResponse> {
     const params = new HttpParams()

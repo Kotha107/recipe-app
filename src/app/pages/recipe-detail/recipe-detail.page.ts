@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Api } from 'src/app/services/api-sevice/api.service';
+import { Api } from 'src/app/services/api-service/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { RecipeModel } from 'src/app/models/recipe.model';
 import { IonicModule } from '@ionic/angular';
@@ -12,13 +11,15 @@ import { getStarArray } from 'src/app/utils/rating.utils';
   templateUrl: './recipe-detail.page.html',
   styleUrls: ['./recipe-detail.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule],
+  imports: [ FormsModule, IonicModule],
 })
 export class RecipeDetailPage implements OnInit {
-  public getStarArray = getStarArray;
+  private apiService = inject(Api);
+  private route = inject(ActivatedRoute);
+
   recipe: RecipeModel | null = null;
 
-  constructor(private route: ActivatedRoute, private apiService: Api) {}
+  constructor() {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -28,5 +29,8 @@ export class RecipeDetailPage implements OnInit {
         this.recipe = recipe;
       });
     }
+  }
+  getStarArray(rating:number){
+    return getStarArray(rating);
   }
 }

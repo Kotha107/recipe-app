@@ -7,6 +7,11 @@
 </ion-header>
 
 <ion-content class="bg-gray-100 p-4 sm:p-6">
+ @if(recipes.length === 0) {
+  <div class="flex justify-center items-center h-[60vh]">
+    <ion-spinner name="crescent" style="font-size: 64px; width: 64px; height: 64px;"></ion-spinner>
+  </div>
+}
   <div class="max-w-3xl mx-auto mt-10">
     <div
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6"
